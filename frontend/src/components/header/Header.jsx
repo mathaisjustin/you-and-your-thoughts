@@ -1,5 +1,5 @@
 import "./header.css";
-import background from '../../assets/background.jpg'
+import background from "../../assets/background.jpg";
 
 export default function Header() {
   return (

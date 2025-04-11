@@ -1,0 +1,1 @@
+export const BASE_URL = "https://you-and-your-thoughts.onrender.com/api";

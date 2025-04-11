@@ -4,12 +4,13 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./singlePost.css";
+import { BASE_URL } from "../../config";
 
 export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
-  const PF = "http://localhost:5000/images/";
+  const PF = `${BASE_URL}/images/`; // Updated to use BASE_URL
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -17,7 +18,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/posts/" + path);
+      const res = await axios.get(`${BASE_URL}/posts/` + path); // Updated to use BASE_URL
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -27,22 +28,26 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`, {
+      await axios.delete(`${BASE_URL}/posts/${post._id}`, { // Updated to use BASE_URL
         data: { username: user.username },
       });
       window.location.replace("/");
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axios.put(`${BASE_URL}/posts/${post._id}`, { // Updated to use BASE_URL
         username: user.username,
         title,
         desc,
       });
-      setUpdateMode(false)
-    } catch (err) {}
+      setUpdateMode(false);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (

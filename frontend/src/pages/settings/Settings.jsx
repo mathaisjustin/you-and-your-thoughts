@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
+import { BASE_URL } from "../../config";
 
 export default function Settings() {
   const [file, setFile] = useState(null);
@@ -12,7 +13,7 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = "https://you-and-your-thoughts-backend.herokuapp.com/images/"
+  const PF = `${BASE_URL}/images/`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,11 +31,13 @@ export default function Settings() {
       data.append("file", file);
       updatedUser.profilePic = filename;
       try {
-        await axios.post("/upload", data);
-      } catch (err) {}
+        await axios.post(`${BASE_URL}/upload`, data);
+      } catch (err) {
+        console.error(err);
+      }
     }
     try {
-      const res = await axios.put("/users/" + user._id, updatedUser);
+      const res = await axios.put(`${BASE_URL}/users/${user._id}`, updatedUser);
       setSuccess(true);
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
     } catch (err) {
@@ -52,7 +55,7 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-              src={file ? URL.createObjectURL(file) : PF+user.profilePic}
+              src={file ? URL.createObjectURL(file) : PF + user.profilePic}
               alt=""
             />
             <label htmlFor="fileInput">

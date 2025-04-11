@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
+import { BASE_URL } from "../../config";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -13,7 +14,7 @@ export default function Register() {
     e.preventDefault();
     setError(false);
     try {
-      const res = await axios.post("/auth/register", {
+      const res = await axios.post(`${BASE_URL}/auth/register`, {
         username,
         email,
         password,
@@ -57,7 +58,7 @@ export default function Register() {
           Login
         </Link>
       </button>
-      {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>}
+      {error && <span style={{ color: "red", marginTop: "10px" }}>Something went wrong!</span>}
     </div>
   );
 }
