@@ -1,0 +1,62 @@
+.contact {
+  background: url(../../assets/contactbackground.jpg) center;
+  background-size: cover;
+  padding: 40px 0;
+  height: calc(100vh - 50px);
+}
+
+.contactTitle {
+  text-align: center;
+  color: white;
+}
+
+.contactBorder {
+  width: 100px;
+  height: 10px auto;
+  background: #34495e;
+  margin: 40px auto;
+}
+
+.contactForm {
+  max-width: 600px;
+  margin: auto;
+  padding: 0 10px;
+  overflow: hidden;
+}
+.contactFormText {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 16px 0;
+  border: 0;
+  background: #111;
+  padding: 20px 40px;
+  outline: none;
+  color: #ddd;
+  transition: 0.5s;
+}
+
+.contactFormText:focus {
+  box-shadow: 0 0 10px 4px #34495e;
+}
+
+textarea.contactFormText {
+  resize: none;
+  height: 120px;
+}
+
+.contactFormButton {
+  float: right;
+  border: 0;
+  background: #34495e;
+  color: #fff;
+  padding: 12px 50px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.5s;
+  font-size: 19px;
+}
+
+.contactFormButton:hover {
+  color: #2980b9;
+}
