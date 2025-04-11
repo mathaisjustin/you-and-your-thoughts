@@ -16,7 +16,7 @@ app.use(express.json());
 
 // CORS Middleware
 app.use(cors({
-    origin: "http://you-and-your-thoughts.vercel.app/", // Replace with your Vercel frontend URL
+    origin: "https://you-and-your-thoughts.vercel.app", // Replace with your Vercel frontend URL
     credentials: true, // Allow cookies and credentials
 }));
 
